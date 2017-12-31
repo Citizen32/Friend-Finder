@@ -4,9 +4,8 @@ var bodyParser = require ("body-parser");
 var PORT = process.env.PORT || 3000;
 var app = express();
 
-app.get('/', function (req, res){
-    res.send('Hello World!')
-});
+
+
 
 
 
@@ -18,12 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/vdn.api+json"}));
 
-// API Routes ===============================================
-app.use('/api/friends?', require("./app/routing/apiRoutes"));
-
 // HTML Routes ==============================================
-app.use('/', require('./app/routing/htmlRoutes'));
-app.use('/survey', require('./app/routing/htmlRoutes'));
+ require('./app/routing/htmlRoutes')(app);
+// API Routes ===============================================
+require("./app/routing/apiRoutes")(app);
+ require('./app/routing/htmlRoutes')(app);
 
 
 
