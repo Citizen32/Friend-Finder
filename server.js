@@ -1,13 +1,10 @@
 // DEPENDENCIES =============================================
 var express = require ("express");
 var bodyParser = require ("body-parser");
+
+
 var PORT = process.env.PORT || 3000;
 var app = express();
-
-
-
-
-
 
 // PARSE application/json ===================================
 app.use(bodyParser.json());
@@ -18,12 +15,9 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/vdn.api+json"}));
 
 // HTML Routes ==============================================
- require('./app/routing/htmlRoutes')(app);
+require('./app/routing/htmlRoutes')(app);
 // API Routes ===============================================
-require("./app/routing/apiRoutes")(app);
- require('./app/routing/htmlRoutes')(app);
-
-
+require('./app/routing/apiRoutes')(app);
 
 // START SERVER TO BEGIN LISTENING ==========================
 app.listen(PORT, function(){
